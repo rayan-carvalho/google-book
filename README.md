@@ -1,24 +1,23 @@
-# curso
+# Front-end API Google Books
+Aplicação com intuito de consumir a API do Google Books. Desenvolvida com Vue.js.
 
-## Project setup
-```
-npm install
-```
+## :rocket: Tecnologias
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+<table>
+  <thead>    
+    <th>Front-end</th>   
+  </thead>
+  <tbody>
+    <tr>      
+      <td>Vue.js</td>      
+    </tr>
+    <tr>
+      <td>Axios</td>    
+    </tr>  
+    <tr>
+      <td>Vuex/td>     
+    </tr>  
+  </tbody>
+  
+</table>
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
