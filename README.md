@@ -15,7 +15,7 @@ Aplicação com intuito de consumir a API do Google Books. Desenvolvida com Vue.
       <td>Axios</td>    
     </tr>  
     <tr>
-      <td>Vuex/td>     
+      <td>Vuex</td>     
     </tr>  
   </tbody>
   
