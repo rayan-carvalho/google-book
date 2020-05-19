@@ -18,7 +18,7 @@
                     depressed
                     dark
                     block
-                    color="green"
+                    color="secondary"
                     class="mb-2"
                     @click="login"
                 >
@@ -45,23 +45,23 @@
         name: 'LoginPage',      
         data(){
             return{
-                 token: '',                
+                 token: process.env.VUE_APP_TOKEN,                
             }
         },
         methods: {
             login() {
                 if(this.token){
                     this.$store.commit('setAuthToken',this.token);
+                    this.$store.commit('setLogged', true);
                     this.$router.push('/book');
                 } else {
-                    this.$store.commit('showErrorMessage', 'Você deve informar um token.');     
-                            
-                    
+                    this.$store.commit('showErrorMessage', 'Você deve informar um token.'); 
                 }
 
             },
             loginAsGuest() {
                 this.$router.push('/book');
+                this.$store.commit('setLogged', true);
 
             }
         } 
