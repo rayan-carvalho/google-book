@@ -50,9 +50,8 @@
         },
         methods: {
             login() {
-                if(this.token){
-                    this.$store.commit('setAuthToken',this.token);
-                    this.$store.commit('setLogged', true);
+                if(this.token){                    
+                    this.$store.commit('setAuthToken',this.token);                    
                     this.$router.push('/book');
                 } else {
                     this.$store.commit('showErrorMessage', 'Você deve informar um token.'); 
@@ -60,8 +59,8 @@
 
             },
             loginAsGuest() {
-                this.$router.push('/book');
                 this.$store.commit('setLogged', true);
+                this.$router.push('/book');               
 
             }
         } 

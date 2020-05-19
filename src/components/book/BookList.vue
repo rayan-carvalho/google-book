@@ -2,17 +2,12 @@
   <div>
         <v-row>
             <v-col cols="12">
-                <v-text-field
-                    v-model="textSearch"
-                    label="Pesquisar..."
-                    @input="doSearch"
-                >
-                </v-text-field>    
+                <search-input-field @search="doSearch" />  
             </v-col>
         </v-row>  
         <v-row 
             justify="center"
-            v-if="!textSearch"
+            v-if="!bookList.length"
         >
             <v-col 
                 cols="12"
@@ -21,7 +16,7 @@
             >
                 <p class="overline">Digite algo para iniciar a pesquisa.</p>
             </v-col>    
-        </v-row>        
+        </v-row>   
         <loading :condition="searchOnGoing">
             <v-row>
                 <v-col 
@@ -40,19 +35,21 @@
 
 </template>
 
-<script>    
+<script> 
+    import api from '../api/api';
     import Loading from '../loading/Loading.vue';
-    import BookItem from '../book/BookItem.vue';
-    const axios = require('axios');
+    import SearchInputField from '../search/SearchInputField.vue';
+    import BookItem from '../book/BookItem.vue';     
+         
+  
     export default {
         name: 'BookList',
-        components: { Loading, BookItem },
+        components: { Loading, SearchInputField, BookItem },
+        mixins: [api],
         
         data() {
-            return {
-                url: process.env.VUE_APP_GOOGLE_BOOK_API_URL,
-                bookList: [],
-                textSearch: '',
+            return {              
+                bookList: [],                
                 searchOnGoing: false,
             }
         },        
@@ -62,10 +59,10 @@
             });
         },*/
         methods:{
-            doSearch() {
-                if(this.textSearch){
+            doSearch(textSearch) {
+                if(textSearch){
                     this.searchOnGoing = true,
-                    axios.get(`${this.url}${this.textSearch}`).then((response) =>{
+                    this.get(`?q=${textSearch}`).then((response) =>{
                         this.bookList = response.data.items;
                         this.searchOnGoing = false;
                     });
@@ -75,8 +72,7 @@
                 
             }
             
-        }
-        
+        }        
      
     };
 </script>

@@ -15,6 +15,7 @@
                 Livros
             </v-btn>
              <v-btn 
+                v-if="$store.state.authToken"
                 text
                 @click="goToCollection"                
              >
@@ -44,8 +45,8 @@
                 //this.$router.push('/book');
             },
             logout() {
-                this.$store.commit('setAthToken', '');
-                this.$store.commit('setLogged', false);
+               
+                this.$store.commit('setAuthToken', '');            
                 this.$router.push('/');
             }
         }        
