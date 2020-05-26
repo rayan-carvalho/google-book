@@ -9,14 +9,20 @@
 </template>
 
 <script>
+    import apiConfig from './components/api/apiConfig';
     import Feedback from './components/feedback/FeedBack.vue';
     import AppHeader from './components/header/AppHeader.vue';
     export default {
         name: 'App',
-        components:{ Feedback, AppHeader },
+        components: { Feedback, AppHeader },
+        mixins: [apiConfig],
         created() {
-            if(window.localStorage.authToken){
-                this.$store.commit('setAuthToken',window.localStorage.authToken);                
+
+            this.createInterceptors();
+
+            if(window.localStorage.authToken && window.localStorage.userId){
+                this.$store.commit('setAuthToken',window.localStorage.authToken);
+                this.$store.commit('setUserId',window.localStorage.userId);                
             }else{
                 this.$router.push('/');
             }

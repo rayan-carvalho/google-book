@@ -3,8 +3,9 @@
      <v-app-bar
       color="secondary"
       app
-      dark
+      dark   
     >
+    
         <v-toolbar-title>Projeto</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-items v-if="$store.state.logged">
@@ -36,17 +37,18 @@
  
    
     export default {
-        name: 'App',
+        name: 'AppHeader',
         methods: {
             goToBookList() {
                 this.$router.push('/book');
             },
             goToCollection() {
-                //this.$router.push('/book');
+                this.$router.push('/library');
             },
             logout() {
                
-                this.$store.commit('setAuthToken', '');            
+                this.$store.commit('setAuthToken', ''); 
+                this.$store.commit('setUserId', '');            
                 this.$router.push('/');
             }
         }        

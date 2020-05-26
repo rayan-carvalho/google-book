@@ -62,8 +62,11 @@
             doSearch(textSearch) {
                 if(textSearch){
                     this.searchOnGoing = true,
-                    this.get(`?q=${textSearch}`).then((response) =>{
+
+                    this.get(`volumes?q=${textSearch}`).then((response) =>{
                         this.bookList = response.data.items;
+                        this.searchOnGoing = false;
+                    }).catch(()=>{
                         this.searchOnGoing = false;
                     });
                 }else{

@@ -17,14 +17,7 @@
             
         </v-card-subtitle>
         <v-card-actions>
-            <v-btn
-                text
-                small
-                color="primary"
-                 @click="goToDetails"
-            >
-                Ver detalhes
-            </v-btn>        
+            <navigation-button :url="entryPageUrl" />      
             <v-btn
                 v-if="this.book.volumeInfo.previewLink"
                 text
@@ -38,26 +31,26 @@
     </v-card> 
 </template>
 
-<script>   
+<script> 
+    import NavigationButton from '../navigation/NavigationButton.vue';  
     import bookService from './bookService';
     export default {
         name: 'BookItem',
-         mixins: [bookService],
+        mixins: [bookService],
+        components:{NavigationButton},
         props: {
             book: { type: Object, required: true },
-        },
+        },       
         data(){
             return{
-                 maxTitleLength: 25,                
+                 maxTitleLength: 25,  
             }
         },
-        methods: {
-           
-            goToDetails() {
-                this.$router.push(`/book/${this.book.id}`);
+         computed: {
+            entryPageUrl() {
+                return  `/book/${this.book.id}`;
             }
-        }
-        
+        },        
     };
 </script>
 <style scoped>

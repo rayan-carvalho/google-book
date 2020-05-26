@@ -13,6 +13,11 @@
                     label="Token"
                     v-model="token" 
                 />
+                
+                <v-text-field 
+                    label="ID do Usuário"
+                    v-model="userID" 
+                />
 
                 <v-btn
                     depressed
@@ -45,16 +50,18 @@
         name: 'LoginPage',      
         data(){
             return{
+                 userID : process.env.VUE_APP_USER_GOOGLE_BOOK_API,
                  token: process.env.VUE_APP_TOKEN,                
             }
         },
         methods: {
             login() {
-                if(this.token){                    
-                    this.$store.commit('setAuthToken',this.token);                    
+                if(this.userID && this.token){                    
+                    this.$store.commit('setAuthToken',this.token);
+                    this.$store.commit('setUserId',this.userID);                    
                     this.$router.push('/book');
                 } else {
-                    this.$store.commit('showErrorMessage', 'Você deve informar um token.'); 
+                    this.$store.commit('showErrorMessage', 'Você deve informar um ID de Usuário e um Token.'); 
                 }
 
             },
